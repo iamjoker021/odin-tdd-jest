@@ -78,9 +78,30 @@ const ceasarCipher = (message, shift) => {
     
 }
 
+const analyzeArray = (array) => {
+
+    if (Array.isArray(array) && 
+        array.every(el => typeof el === 'number')
+    ) {
+        try {
+            return { 
+                average: array.reduce((acc, val) => acc+val) / array.length, 
+                min: Math.min(...array), 
+                max: Math.max(...array), 
+                length: array.length
+            };
+        } catch (error) {
+            return undefined;
+        }
+        
+    }
+    return null;
+}
+
 module.exports = {
     capitalize,
     reverseString,
     calculator,
-    ceasarCipher
+    ceasarCipher,
+    analyzeArray
 }

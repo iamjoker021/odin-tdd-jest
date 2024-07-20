@@ -1,4 +1,4 @@
-const { capitalize, reverseString, calculator, ceasarCipher } = require('./assignment');
+const { capitalize, reverseString, calculator, ceasarCipher, analyzeArray } = require('./assignment');
 
 it('Capitalize with valid input', () => {
     expect(capitalize('abcs')).toEqual('Abcs');
@@ -123,4 +123,46 @@ it('Ceasar-Cispher  with Invalid inputs', () => {
     expect(ceasarCipher({a: 1}, 3)).toBeNull();
     expect(ceasarCipher({a: 1})).toBeNull();
     expect(ceasarCipher([1, 2, 3], 3)).toBeNull();
+})
+
+it('analyzeArray valid inputs', () => {
+    // Helper for testing
+    const expected = (avg, min, max, leng) => { 
+        return {
+            average: expect.closeTo(avg), 
+            min: expect.closeTo(min), 
+            max: expect.closeTo(max), 
+            length: expect.closeTo(leng)
+        }
+    }
+
+    expect(analyzeArray([1,8,3,4,2,6])).toEqual(expected(4, 1, 8, 6));
+    expect(analyzeArray([1,8,3,4,2,6.6])).toEqual(expected(4.1, 1, 8, 6));
+    expect(analyzeArray([1,8,3,4,2,-6.6])).toEqual(expected(1.9, -6.6, 8, 6));
+    expect(analyzeArray([1, 2, 3], 3)).toEqual(expected(2, 1, 3, 3));
+})
+
+it('analyzeArray Invalid inputs', () => {
+    const expected = (avg, min, max, leng) => { 
+        return {
+            average: expect.closeTo(avg), 
+            min: expect.closeTo(min), 
+            max: expect.closeTo(max), 
+            length: expect.closeTo(leng)
+        }
+    }
+
+    expect(analyzeArray('xyz', BigInt(26 ** 20))).toBeNull();
+    expect(analyzeArray()).toBeNull();
+    expect(analyzeArray(null)).toBeNull();
+    expect(analyzeArray(undefined)).toBeNull();
+    expect(analyzeArray('xyz')).toBeNull();
+    expect(analyzeArray(123, 3)).toBeNull();
+    expect(analyzeArray(123.333, 3)).toBeNull();
+    expect(analyzeArray({a: 1}, 3)).toBeNull();
+    expect(analyzeArray({a: 1})).toBeNull();
+    expect(analyzeArray([1,3,4,'123',6])).toBeNull();
+    expect(analyzeArray([1,3,{a: 1},123,6])).toBeNull();
+    expect(analyzeArray([1,8,3,4,20000000000000000000n,6])).toBeNull();
+
 })
