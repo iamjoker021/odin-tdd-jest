@@ -1,0 +1,22 @@
+{
+  "name": "odin-tdd-jest",
+  "version": "1.0.0",
+  "description": "TheOdinProject to practice and follow TDD",
+  "main": "assignment..test.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/iamjoker021/odin-tdd-jest.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/iamjoker021/odin-tdd-jest/issues"
+  },
+  "homepage": "https://github.com/iamjoker021/odin-tdd-jest#readme",
+  "devDependencies": {
+    "jest": "^29.7.0"
+  }
+}
