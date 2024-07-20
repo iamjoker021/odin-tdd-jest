@@ -56,8 +56,31 @@ const calculator = (() => {
     return { add, subtract, multiply, divide }
 })();
 
+const ceasarCipher = (message, shift) => {
+
+    if (typeof message === 'string' && typeof shift === 'number' && parseInt(shift) === shift) {
+        const alphabets = [...Array(26).keys()].map(index => String.fromCharCode('a'.charCodeAt(0)+index));
+    
+        return message.split('').map((w) => {
+
+            // Alphabet
+            const currIndex = w.toLowerCase().charCodeAt(0) - 'a'.charCodeAt(0)
+            if (currIndex >= 0 && currIndex < 26) {
+                const toBeShifted = ( 26 + currIndex + shift) % 26;
+                return w.toUpperCase() === w ? alphabets[toBeShifted].toUpperCase() : alphabets[toBeShifted];
+            }
+
+            // Non-Alphabet
+            return w;
+        }).join('');
+    }
+    return null;
+    
+}
+
 module.exports = {
     capitalize,
     reverseString,
-    calculator
+    calculator,
+    ceasarCipher
 }

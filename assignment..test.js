@@ -1,4 +1,4 @@
-const { capitalize, reverseString, calculator } = require('./assignment');
+const { capitalize, reverseString, calculator, ceasarCipher } = require('./assignment');
 
 it('Capitalize with valid input', () => {
     expect(capitalize('abcs')).toEqual('Abcs');
@@ -99,4 +99,28 @@ it('Calculator with Invalid inputs', () => {
     expect(calculator.divide('123.333')).toBeNull();
     expect(calculator.divide({a: 1})).toBeNull();
     expect(calculator.divide([1, 2, 3])).toBeNull();
+})
+
+it('Ceasar-Cispher with valid inputs', () => {
+    expect(ceasarCipher('xyz', 3)).toEqual('abc');
+    expect(ceasarCipher('HeLLo', 3)).toEqual('KhOOr');
+    expect(ceasarCipher('Hello, World!', 3)).toEqual('Khoor, Zruog!');
+    expect(ceasarCipher('xyz', 1)).toEqual('yza');
+    expect(ceasarCipher('xyz', 29)).toEqual('abc');
+    expect(ceasarCipher('xyz', -1)).toEqual('wxy');
+    expect(ceasarCipher('xyz', -27)).toEqual('wxy');
+    expect(ceasarCipher('xyz', -27, 54, 56)).toEqual('wxy');
+})
+
+it('Ceasar-Cispher  with Invalid inputs', () => {
+    expect(ceasarCipher('xyz', BigInt(26 ** 20))).toBeNull();
+    expect(ceasarCipher()).toBeNull();
+    expect(ceasarCipher(null)).toBeNull();
+    expect(ceasarCipher(undefined)).toBeNull();
+    expect(ceasarCipher('xyz')).toBeNull();
+    expect(ceasarCipher(123, 3)).toBeNull();
+    expect(ceasarCipher(123.333, 3)).toBeNull();
+    expect(ceasarCipher({a: 1}, 3)).toBeNull();
+    expect(ceasarCipher({a: 1})).toBeNull();
+    expect(ceasarCipher([1, 2, 3], 3)).toBeNull();
 })
